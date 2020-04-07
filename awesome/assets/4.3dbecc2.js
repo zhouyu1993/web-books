@@ -1,0 +1,2 @@
+/*! This file is created by RainJoy */
+webpackJsonp([4,6],{353:function(o,e,r){"use strict";r(354),console.log("borde2")},354:function(o,e,r){var p=r(355);"string"==typeof p&&(p=[[o.id,p,""]]);r(303)(p,{});p.locals&&(o.exports=p.locals)},355:function(o,e,r){e=o.exports=r(302)(),e.push([o.id,".app{text-align:center;font-size:.28rem}.app .old{border-radius:.2rem;border:1px solid #ff397e}.app .old,.app .oneList{margin:.2rem auto;width:4rem;padding:.2rem}.app .oneList{border-bottom:1px solid #ff397e}",""])}});

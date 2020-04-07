@@ -1,0 +1,66 @@
+@import './rem';
+
+@mixin text($width, $height, $line: 2) {
+  display: -webkit-box;
+  width: rem($width);
+  height: rem($height);
+  overflow: hidden;
+  line-height: rem($height / 2);
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+// 上 left top to bottom 100% 1px
+// 下 left bottom to top 100% 1px
+// 左 left top to right 1px 100%
+// 右 right top to left 1px 100%
+@mixin nativeborder($color: #ddd, $position: left top, $direction: to bottom, $size: 100% 1px) {
+  background-image: linear-gradient($direction, $color 50%, transparent 50%);
+  background-position: $position;
+  background-repeat: no-repeat;
+  background-size: $size;
+}
+
+@mixin dpr($dpr, $radius, $pseudo) {
+  @media only screen and (-webkit-min-device-pixel-ratio: $dpr) {
+    &::#{$pseudo} {
+      width: $dpr * 100%;
+      height: $dpr * 100%;
+      border-radius: rem($dpr * $radius);
+      transform: scale(1 / $dpr);
+    }
+  }
+}
+
+$dpr-list: 1, 1.5, 2, 2.5, 3, 3.5, 4;
+@mixin border($position: all, $color: #ddd, $radius: 0, $width: 1px, $style: solid, $z-index: 1, $pseudo: before) {
+  position: relative;
+  z-index: $z-index;
+  border-radius: rem($radius);
+
+  &::#{$pseudo} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-index + 1;
+    pointer-events: none;
+    content: ' ';
+    box-sizing: border-box;
+    transform-origin: left top;
+    @if $position == all {
+      border: $width $style $color;
+    } @else if $position == top {
+      border-top: $width $style $color;
+    } @else if $position == left {
+      border-left: $width $style $color;
+    } @else if $position == topLeft {
+      border-top: $width $style $color;
+      border-left: $width $style $color;
+    }
+  }
+
+  @each $dpr in $dpr-list {
+    @include dpr($dpr, $radius, $pseudo);
+  }
+}
