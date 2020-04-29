@@ -5,10 +5,10 @@ const port = 6789
 
 const server = http.createServer((req, res) => {
   for (let key in req.headers) {
-    console.log('http.createServer: ', `${key}: ${req.headers[key]}`)
+    console.log('req.headers: ', `${key}: ${req.headers[key]}`)
   }
 
-  res.setHeader('X-1', 1)
+  res.setHeader('X-1', '1')
 
   res.writeHead(200, {
     'X-2': '2',
