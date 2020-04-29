@@ -1,8 +1,12 @@
 # fix
 
+`python3 -m venv ../GeekTime`
+
 `source bin/activate`
 
 `pip install -r requirements.txt`
+
+`python download_audio_by_cid.py`
 
 `python download_video_by_cid.py`
 
