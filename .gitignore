@@ -1,3 +1,5 @@
+*.mp4
+
 .DS_Store
 node_modules
 
@@ -18,5 +20,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-
-*.mp4
